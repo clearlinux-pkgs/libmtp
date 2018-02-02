@@ -6,7 +6,7 @@
 #
 Name     : libmtp
 Version  : 1.1.14
-Release  : 1
+Release  : 2
 URL      : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz
 Source0  : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz
 Source99 : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz.asc
