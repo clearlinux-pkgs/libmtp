@@ -6,10 +6,10 @@
 #
 Name     : libmtp
 Version  : 1.1.14
-Release  : 2
-URL      : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz
-Source0  : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz
-Source99 : https://downloads.sourceforge.net/project/libmtp/libmtp/1.1.14/libmtp-1.1.14.tar.gz.asc
+Release  : 3
+URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz
+Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz
+Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz.asc
 Summary  : libmtp is a library for accessing Media Transfer Protocol devices
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -69,9 +69,9 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1510947362
+export SOURCE_DATE_EPOCH=1525822774
 %configure --disable-static
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 
 %check
 export LANG=C
@@ -81,7 +81,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1510947362
+export SOURCE_DATE_EPOCH=1525822774
 rm -rf %{buildroot}
 %make_install
 
