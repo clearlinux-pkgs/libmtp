@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2209D6902F969C95 (meissner@suse.de)
 #
 Name     : libmtp
-Version  : 1.1.14
-Release  : 4
-URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz
-Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz
-Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.14/libmtp-1.1.14.tar.gz.asc
+Version  : 1.1.15
+Release  : 5
+URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz
+Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz
+Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz.asc
 Summary  : libmtp is a library for accessing Media Transfer Protocol devices
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -62,14 +62,14 @@ lib components for the libmtp package.
 
 
 %prep
-%setup -q -n libmtp-1.1.14
+%setup -q -n libmtp-1.1.15
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1525822774
+export SOURCE_DATE_EPOCH=1527367882
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -81,7 +81,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1525822774
+export SOURCE_DATE_EPOCH=1527367882
 rm -rf %{buildroot}
 %make_install
 
@@ -128,4 +128,4 @@ rm -rf %{buildroot}
 %files lib
 %defattr(-,root,root,-)
 /usr/lib64/libmtp.so.9
-/usr/lib64/libmtp.so.9.3.0
+/usr/lib64/libmtp.so.9.4.0
