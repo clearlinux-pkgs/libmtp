@@ -1,5 +1,4 @@
 Configure miss: if the host operating system is Darwin
 Configure miss: For MinGW32
-Configure miss: libgcrypt... checking for gcry_check_version in -lgcrypt
 Configure miss: le32toh in machine/endian.h
 Configure miss: swap32 in machine/endian.h
