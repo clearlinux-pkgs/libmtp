@@ -5,17 +5,18 @@
 # Source0 file verified with key 0x2209D6902F969C95 (meissner@suse.de)
 #
 Name     : libmtp
-Version  : 1.1.15
-Release  : 5
-URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz
-Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz
-Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.15/libmtp-1.1.15.tar.gz.asc
+Version  : 1.1.16
+Release  : 6
+URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
+Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
+Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz.asc
 Summary  : libmtp is a library for accessing Media Transfer Protocol devices
 Group    : Development/Tools
 License  : LGPL-2.1
-Requires: libmtp-bin
-Requires: libmtp-config
-Requires: libmtp-lib
+Requires: libmtp-bin = %{version}-%{release}
+Requires: libmtp-config = %{version}-%{release}
+Requires: libmtp-lib = %{version}-%{release}
+Requires: libmtp-license = %{version}-%{release}
 BuildRequires : pkgconfig(libusb-1.0)
 
 %description
@@ -28,7 +29,8 @@ Initiator and Responder
 %package bin
 Summary: bin components for the libmtp package.
 Group: Binaries
-Requires: libmtp-config
+Requires: libmtp-config = %{version}-%{release}
+Requires: libmtp-license = %{version}-%{release}
 
 %description bin
 bin components for the libmtp package.
@@ -45,9 +47,9 @@ config components for the libmtp package.
 %package dev
 Summary: dev components for the libmtp package.
 Group: Development
-Requires: libmtp-lib
-Requires: libmtp-bin
-Provides: libmtp-devel
+Requires: libmtp-lib = %{version}-%{release}
+Requires: libmtp-bin = %{version}-%{release}
+Provides: libmtp-devel = %{version}-%{release}
 
 %description dev
 dev components for the libmtp package.
@@ -56,20 +58,29 @@ dev components for the libmtp package.
 %package lib
 Summary: lib components for the libmtp package.
 Group: Libraries
+Requires: libmtp-license = %{version}-%{release}
 
 %description lib
 lib components for the libmtp package.
 
 
+%package license
+Summary: license components for the libmtp package.
+Group: Default
+
+%description license
+license components for the libmtp package.
+
+
 %prep
-%setup -q -n libmtp-1.1.15
+%setup -q -n libmtp-1.1.16
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527367882
+export SOURCE_DATE_EPOCH=1540738991
 %configure --disable-static
 make  %{?_smp_mflags}
 
@@ -81,8 +92,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1527367882
+export SOURCE_DATE_EPOCH=1540738991
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/libmtp
+cp COPYING %{buildroot}/usr/share/package-licenses/libmtp/COPYING
 %make_install
 
 %files
@@ -129,3 +142,7 @@ rm -rf %{buildroot}
 %defattr(-,root,root,-)
 /usr/lib64/libmtp.so.9
 /usr/lib64/libmtp.so.9.4.0
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/libmtp/COPYING
