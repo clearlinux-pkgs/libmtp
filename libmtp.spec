@@ -6,7 +6,7 @@
 #
 Name     : libmtp
 Version  : 1.1.16
-Release  : 7
+Release  : 8
 URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
 Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
 Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz.asc
