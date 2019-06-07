@@ -1,0 +1,2 @@
+--with-udev-group=plugdev
+--with-udev-mode=0660
