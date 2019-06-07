@@ -6,7 +6,7 @@
 #
 Name     : libmtp
 Version  : 1.1.16
-Release  : 8
+Release  : 9
 URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
 Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
 Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz.asc
@@ -52,6 +52,7 @@ Group: Development
 Requires: libmtp-lib = %{version}-%{release}
 Requires: libmtp-bin = %{version}-%{release}
 Provides: libmtp-devel = %{version}-%{release}
+Requires: libmtp = %{version}-%{release}
 
 %description dev
 dev components for the libmtp package.
@@ -82,8 +83,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540742243
-%configure --disable-static
+export SOURCE_DATE_EPOCH=1559896406
+export GCC_IGNORE_WERROR=1
+export AR=gcc-ar
+export RANLIB=gcc-ranlib
+export NM=gcc-nm
+export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
+%configure --disable-static --with-udev-group=plugdev \
+--with-udev-mode=0660
 make  %{?_smp_mflags}
 
 %check
@@ -94,7 +104,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1540742243
+export SOURCE_DATE_EPOCH=1559896406
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmtp
 cp COPYING %{buildroot}/usr/share/package-licenses/libmtp/COPYING
