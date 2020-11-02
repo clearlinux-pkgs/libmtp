@@ -6,10 +6,10 @@
 #
 Name     : libmtp
 Version  : 1.1.16
-Release  : 9
+Release  : 10
 URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
 Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz
-Source99 : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz.asc
+Source1  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.16/libmtp-1.1.16.tar.gz.asc
 Summary  : libmtp is a library for accessing Media Transfer Protocol devices
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -77,37 +77,38 @@ license components for the libmtp package.
 
 %prep
 %setup -q -n libmtp-1.1.16
+cd %{_builddir}/libmtp-1.1.16
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1559896406
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1604352999
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %configure --disable-static --with-udev-group=plugdev \
 --with-udev-mode=0660
 make  %{?_smp_mflags}
 
 %check
-export LANG=C
+export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1559896406
+export SOURCE_DATE_EPOCH=1604352999
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmtp
-cp COPYING %{buildroot}/usr/share/package-licenses/libmtp/COPYING
+cp %{_builddir}/libmtp-1.1.16/COPYING %{buildroot}/usr/share/package-licenses/libmtp/2cf3b1b4efcd76fbc3c4765a5f464898e8e10cc9
 %make_install
 
 %files
@@ -146,7 +147,7 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libmtp/COPYING
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/*.h
+/usr/include/libmtp.h
 /usr/lib64/libmtp.so
 /usr/lib64/pkgconfig/libmtp.pc
 
@@ -157,4 +158,4 @@ cp COPYING %{buildroot}/usr/share/package-licenses/libmtp/COPYING
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/libmtp/COPYING
+/usr/share/package-licenses/libmtp/2cf3b1b4efcd76fbc3c4765a5f464898e8e10cc9
