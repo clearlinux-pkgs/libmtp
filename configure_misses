@@ -1,4 +1,5 @@
-Configure miss: if the host operating system is Darwin
+Configure miss: 32-bit host C ABI
 Configure miss: For MinGW32
+Configure miss: if the host operating system is Darwin
 Configure miss: le32toh in machine/endian.h
 Configure miss: swap32 in machine/endian.h
