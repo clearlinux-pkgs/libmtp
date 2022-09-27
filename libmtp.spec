@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x2209D6902F969C95 (meissner@suse.de)
 #
 Name     : libmtp
-Version  : 1.1.19
-Release  : 11
-URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.19/libmtp-1.1.19.tar.gz
-Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.19/libmtp-1.1.19.tar.gz
-Source1  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.19/libmtp-1.1.19.tar.gz.asc
+Version  : 1.1.20
+Release  : 12
+URL      : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.20/libmtp-1.1.20.tar.gz
+Source0  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.20/libmtp-1.1.20.tar.gz
+Source1  : https://sourceforge.net/projects/libmtp/files/libmtp/1.1.20/libmtp-1.1.20.tar.gz.asc
 Summary  : libmtp is a library for accessing Media Transfer Protocol devices
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -75,15 +75,15 @@ license components for the libmtp package.
 
 
 %prep
-%setup -q -n libmtp-1.1.19
-cd %{_builddir}/libmtp-1.1.19
+%setup -q -n libmtp-1.1.20
+cd %{_builddir}/libmtp-1.1.20
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1632766890
+export SOURCE_DATE_EPOCH=1664294931
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -104,10 +104,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1632766890
+export SOURCE_DATE_EPOCH=1664294931
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/libmtp
-cp %{_builddir}/libmtp-1.1.19/COPYING %{buildroot}/usr/share/package-licenses/libmtp/2cf3b1b4efcd76fbc3c4765a5f464898e8e10cc9
+cp %{_builddir}/libmtp-%{version}/COPYING %{buildroot}/usr/share/package-licenses/libmtp/2cf3b1b4efcd76fbc3c4765a5f464898e8e10cc9
 %make_install
 
 %files
