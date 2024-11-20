@@ -1,5 +1,9 @@
+Configure miss:  option for large files
 Configure miss: 32-bit host C ABI
 Configure miss: For MinGW32
 Configure miss: if the host operating system is Darwin
 Configure miss: le32toh in machine/endian.h
+Configure miss: mtp-hotplug
 Configure miss: swap32 in machine/endian.h
+Configure miss: x86_64-generic-linux-gnu-file
+Configure miss: x86_64-generic-linux-gnu-mtp-hotplug
