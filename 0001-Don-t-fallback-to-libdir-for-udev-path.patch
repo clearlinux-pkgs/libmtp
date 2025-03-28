@@ -1,0 +1,41 @@
+From 45ba987c8a4c65a9ea9688a81cdb1ca7915709ae Mon Sep 17 00:00:00 2001
+From: William Douglas <william.douglas@intel.com>
+Date: Fri, 28 Mar 2025 13:05:45 -0700
+Subject: [PATCH] Don't fallback to libdir for udev path
+
+This is only being done for upstream distcheck and causes the udev
+rules to show up in /usr/lib64.
+
+Signed-off-by: William Douglas <william.douglas@intel.com>
+---
+ configure.ac | 10 +++-------
+ 1 file changed, 3 insertions(+), 7 deletions(-)
+
+diff --git a/configure.ac b/configure.ac
+index 40bdaaa..85347ba 100644
+--- a/configure.ac
++++ b/configure.ac
+@@ -31,17 +31,13 @@ dnl run 'make distcheck' as well as run 'rpmbuild -ba' too. Do this
+ dnl here since automake can't process 'if/else/endif in Makefile.am
+ UDEVdata_SNIPPET='
+ noinst_DATA="libmtp.fdi libmtp.usermap"
+-ifeq ($(shell id -u),0)
+-    udevrulesdir=$(UDEV)/rules.d
+-    hwdbdir=$(UDEV)/hwdb.d
++udevrulesdir=$(UDEV)/rules.d
++hwdbdir=$(UDEV)/hwdb.d
+ ifdef ENABLE_CROSSBUILD
+     udevrulesdir=$(TARGET_UDEV)/rules.d
+     hwdbdir=$(TARGET_UDEV)/hwdb.d
+ endif
+-else
+-    udevrulesdir=$(libdir)/udev/rules.d
+-    hwdbdir=$(libdir)/udev/hwdb.d
+-endif
++
+ '
+ AC_SUBST([UDEVdata_SNIPPET])
+ AM_SUBST_NOTMAKE([UDEVdata_SNIPPET])
+-- 
+2.48.1
+
